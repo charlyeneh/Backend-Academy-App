@@ -1,0 +1,28 @@
+{
+	"name": "backend-academy-app",
+	"version": "1.0.0",
+	"description": "A NodeJS REST service for the management of students at Backend Academy school. The aim is to create a CRUD APIs for managing a mock generated data.",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/charlyeneh/Backend-Academy-App.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/charlyeneh/Backend-Academy-App/issues"
+	},
+	"homepage": "https://github.com/charlyeneh/Backend-Academy-App#readme",
+	"dependencies": {
+		"express": "^4.18.1",
+		"mongoose": "^6.5.2"
+	},
+	"devDependencies": {
+		"dotenv": "^16.0.1",
+		"nodemon": "^2.0.19"
+	}
+}
