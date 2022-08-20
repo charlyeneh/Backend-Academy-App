@@ -15,6 +15,14 @@ mongoose.connect(process.env.DATABASE_URL, {
 	useUnifiedTopology: true,
 });
 
+app.use(express.json());
+
+const studentsRouter = require('./routes/students');
+app.use('/students', studentsRouter);
+
+const classesRouter = require('./routes/subjects');
+app.use('/subjects', classesRouter);
+
 app.listen(port, () => {
 	console.log(`App is listening on port ${port}!`);
 });
