@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const studentsModel = require('../models/students');
+const getStudent = require('./getStudentMidleware');
 
 //Getting all students
 router.get('/', async (req, res) => {
@@ -13,8 +14,8 @@ router.get('/', async (req, res) => {
 });
 
 //Getting one student
-router.get('/:id', (req, res) => {
-	res.send(req.params.id);
+router.get('/:id', getStudent, (req, res) => {
+	res.json(res.student);
 });
 
 //Creating student
@@ -35,9 +36,38 @@ router.post('/', async (req, res) => {
 });
 
 //Updating student
-router.patch('/:id', (req, res) => {});
+router.patch('/:id', getStudent, async (req, res) => {
+	if (req.body.regNum != null) {
+		res.student.regNum = req.body.regNum;
+	}
+	if (req.body.sex != null) {
+		res.student.sex = req.body.sex;
+	}
+	if (req.body.age != null) {
+		res.student.age = req.body.age;
+	}
+	if (req.body.numOfSubjects != null) {
+		res.student.numOfSubjects = req.body.numOfSubjects;
+	}
+	if (req.body.class != null) {
+		res.student.class = req.body.class;
+	}
+	try {
+		const updatedStudentRecord = await res.student.save();
+		res.json(updatedStudentRecord);
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+});
 
 //Deleting student
-router.delete('/:id', (req, res) => {});
+router.delete('/:id', getStudent, async (req, res) => {
+	try {
+		await res.student.remove();
+		res.json({ message: 'Student deleted successfully' });
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+});
 
 module.exports = router;
