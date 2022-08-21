@@ -1,22 +1,70 @@
 const express = require('express');
+const {
+	getAllSubjects,
+	getSubjectById,
+	createSubject,
+	updateSubject,
+	deleteSubject,
+} = require('../services/subjects');
+const { ApiError } = require('../utils/error');
+const { validateObjectId } = require('../middlewares');
+
 const router = express.Router();
-const students = require('../models/subjects');
 
 //Getting all
-router.get('/', (req, res) => {
-	res.send('Hello world');
+router.get('/', async (req, res, next) => {
+	try {
+		const subjects = await getAllSubjects();
+		res.json(subjects);
+	} catch (error) {
+		next(error);
+	}
 });
 
 //Getting one
-router.get('/:id', (req, res) => {});
+router.get('/:id', validateObjectId, async (req, res, next) => {
+	try {
+		const subject = await getSubjectById(req.params.id);
+		res.json(subject);
+	} catch (error) {
+		next(error);
+	}
+});
 
 //Creating one
-router.post('/', (req, res) => {});
+router.post('/', async (req, res, next) => {
+	const { name, type } = req.body;
+
+	try {
+		subject = await createSubject({ name, type });
+		res.json(subject);
+	} catch (error) {
+		next(error);
+	}
+});
 
 //Updating one
-router.patch('/:id', (req, res) => {});
+router.patch('/:id', validateObjectId, async (req, res, next) => {
+	const { id } = req.params;
+	const { name, type } = req.body;
+
+	try {
+		await updateSubject(id, { name, type });
+		res.status(202).json({ message: 'Updated!' });
+	} catch (error) {
+		next(error);
+	}
+});
 
 //Deleting one
-router.delete('/:id', (req, res) => {});
+router.delete('/:id', validateObjectId, async (req, res, next) => {
+	try {
+		await deleteSubject(req.params.id);
+
+		res.status(202).json({ message: 'Deleted!' });
+	} catch (error) {
+		next(error);
+	}
+});
 
 module.exports = router;

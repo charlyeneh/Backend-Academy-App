@@ -1,80 +1,68 @@
 const express = require('express');
 const router = express.Router();
-const studentsModel = require('../models/students');
-const getStudent = require('./getStudentMidleware');
+const {
+	validateCreateStudent,
+	validateFetchStudentParameters,
+} = require('../middlewares/students');
+const {
+	createStudent,
+	getAllStudents,
+	getStudentById,
+} = require('../services/students');
+const { validateObjectId } = require('../middlewares');
 
 //Getting all students
-router.get('/', async (req, res) => {
+router.get('/', validateFetchStudentParameters, async (req, res, next) => {
 	try {
-		const students = await studentsModel.find({});
+		const students = await getAllStudents(req.query);
 		res.json(students);
 	} catch (error) {
-		res.status(500).json({ message: error.message });
+		next(error);
 	}
 });
 
 //Getting one student
-router.get('/:id', getStudent, (req, res) => {
-	res.json(res.student);
+router.get('/:id', validateObjectId, async (req, res, next) => {
+	try {
+		const student = await getStudentById();
+		res.json(student);
+	} catch (error) {
+		next(error);
+	}
 });
 
 //Creating student
-router.post('/', async (req, res) => {
-	const student = new studentsModel({
-		regNum: req.body.regNum,
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		sex: req.body.sex,
-		age: req.body.age,
-		numOfSubjects: req.body.numOfSubjects,
-		class: req.body.class,
-	});
+router.post('/', validateCreateStudent, async (req, res, next) => {
 	try {
-		const newStudent = await student.save();
-		res.status(201).json(newStudent);
+		const student = await createStudent(req.body);
+		res.status(201).json(student);
 	} catch (error) {
-		res.status(400).json({ message: error.message });
+		next(error);
 	}
 });
 
 //Updating student
-router.patch('/:id', getStudent, async (req, res) => {
-	if (req.body.regNum != null) {
-		res.student.regNum = req.body.regNum;
+router.patch(
+	'/:id',
+	validateObjectId,
+	validateCreateStudent,
+	async (req, res, next) => {
+		try {
+			await updateStudent(req.params.id, req.body);
+			res.json({ message: 'Updated!' });
+		} catch (error) {
+			next(error);
+		}
 	}
-	if (req.body.firstName != null) {
-		res.student.firstName = req.body.firstName;
-	}
-	if (req.body.lastName != null) {
-		res.student.lastName = req.body.lastName;
-	}
-	if (req.body.sex != null) {
-		res.student.sex = req.body.sex;
-	}
-	if (req.body.age != null) {
-		res.student.age = req.body.age;
-	}
-	if (req.body.numOfSubjects != null) {
-		res.student.numOfSubjects = req.body.numOfSubjects;
-	}
-	if (req.body.class != null) {
-		res.student.class = req.body.class;
-	}
-	try {
-		const updatedStudentRecord = await res.student.save();
-		res.json(updatedStudentRecord);
-	} catch (error) {
-		res.status(400).json({ message: error.message });
-	}
-});
+);
 
 //Deleting student
-router.delete('/:id', getStudent, async (req, res) => {
+router.delete('/:id', validateObjectId, async (req, res, next) => {
 	try {
-		await res.student.remove();
+		await deleteStudent(req.params.id);
 		res.json({ message: 'Student deleted successfully' });
 	} catch (error) {
-		res.status(500).json({ message: error.message });
+		next(error);
 	}
 });
 
