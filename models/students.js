@@ -1,35 +1,46 @@
 const mongoose = require('mongoose');
 
-const studentsSchema = new mongoose.Schema({
-	regNum: {
-		type: String,
-		required: true,
+const studentsSchema = new mongoose.Schema(
+	{
+		regNumber: {
+			type: String,
+			unique: true,
+			required: true,
+		},
+		firstName: {
+			type: String,
+			required: true,
+		},
+		middleName: {
+			type: String,
+		},
+		lastName: {
+			type: String,
+			required: true,
+		},
+		dob: {
+			type: Date,
+			required: true,
+		},
+		sex: {
+			type: String,
+			required: true,
+			enum: ['male', 'female'],
+		},
+		subjects: [
+			{
+				type: String,
+				required: true,
+			},
+		],
+		class: {
+			type: String,
+			required: true,
+			enum: ['JSS1', 'JSS2', 'JSS3', 'SSS1', 'SSS2', 'SSS3'],
+		},
 	},
-	firstName: {
-		type: String,
-		required: true,
-	},
-	lastName: {
-		type: String,
-		required: true,
-	},
-	sex: {
-		type: String,
-		required: true,
-	},
-	age: {
-		type: Number,
-		required: true,
-	},
-	numOfSubjects: {
-		type: Number,
-		required: true,
-	},
-	class: {
-		type: String,
-		required: true,
-	},
-});
+	{ timestamps: true }
+);
 
 const students = mongoose.model('Students', studentsSchema);
 
