@@ -22,6 +22,8 @@ router.get('/:id', getStudent, (req, res) => {
 router.post('/', async (req, res) => {
 	const student = new studentsModel({
 		regNum: req.body.regNum,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		sex: req.body.sex,
 		age: req.body.age,
 		numOfSubjects: req.body.numOfSubjects,
@@ -39,6 +41,12 @@ router.post('/', async (req, res) => {
 router.patch('/:id', getStudent, async (req, res) => {
 	if (req.body.regNum != null) {
 		res.student.regNum = req.body.regNum;
+	}
+	if (req.body.firstName != null) {
+		res.student.firstName = req.body.firstName;
+	}
+	if (req.body.lastName != null) {
+		res.student.lastName = req.body.lastName;
 	}
 	if (req.body.sex != null) {
 		res.student.sex = req.body.sex;

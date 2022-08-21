@@ -18,7 +18,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 app.use(express.json());
 
 const studentsRouter = require('./routes/students');
-app.use('/students', studentsRouter);
+app.use('/api/v1/students', studentsRouter);
 
 const classesRouter = require('./routes/subjects');
 app.use('/subjects', classesRouter);
