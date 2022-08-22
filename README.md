@@ -1,7 +1,7 @@
 <h1 align="center">School Management System API(Backend Academy)</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
-  <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/project_setup#readme" target="_blank">
+  <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/app_development#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/project_setup/commit-activity" target="_blank">
