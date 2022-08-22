@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 const {
 	getAllSubjects,
 	getSubjectById,
@@ -31,7 +33,7 @@ router.get('/:id', validateObjectId, async (req, res, next) => {
 	}
 });
 
-//Creating one
+//Creating subject
 router.post('/', async (req, res, next) => {
 	const { name, type } = req.body;
 
@@ -43,7 +45,7 @@ router.post('/', async (req, res, next) => {
 	}
 });
 
-//Updating one
+//Updating subject
 router.patch('/:id', validateObjectId, async (req, res, next) => {
 	const { id } = req.params;
 	const { name, type } = req.body;
@@ -56,7 +58,7 @@ router.patch('/:id', validateObjectId, async (req, res, next) => {
 	}
 });
 
-//Deleting one
+//Deleting subject
 router.delete('/:id', validateObjectId, async (req, res, next) => {
 	try {
 		await deleteSubject(req.params.id);

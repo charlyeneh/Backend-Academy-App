@@ -1,15 +1,43 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 const {
 	validateCreateStudent,
 	validateFetchStudentParameters,
 } = require('../middlewares/students');
+
 const {
 	createStudent,
 	getAllStudents,
 	getStudentById,
 } = require('../services/students');
 const { validateObjectId } = require('../middlewares');
+
+const swaggerOptions = {
+	swaggerDefinition: {
+		info: {
+			title: 'School Management API(Backend Academy)',
+			version: '1.0.0',
+		},
+	},
+	apis: ['students.js', 'subjects.js'],
+};
+
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+
+/**
+ * @swagger
+ * /students:
+ * 		get:
+ * 			description: Get all students
+ * 			responses:
+ * 				200:
+ * 					description: Success
+ *
+ */
 
 //Getting all students
 router.get('/', validateFetchStudentParameters, async (req, res, next) => {
