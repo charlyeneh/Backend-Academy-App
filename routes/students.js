@@ -30,16 +30,15 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 /**
  * @swagger
- * /students:
- * 		get:
- * 			description: Get all students
- * 			responses:
- * 				200:
- * 					description: Success
- *
+ * /api/v1/students:
+ *  get:
+ *    summary: This api is used to get all student's data from the mongoDB database
+ *    description: Get all students
+ *    responses:
+ *      200:
+ *        description: Success
  */
 
-//Getting all students
 router.get('/', validateFetchStudentParameters, async (req, res, next) => {
 	try {
 		const students = await getAllStudents(req.query);
@@ -49,7 +48,16 @@ router.get('/', validateFetchStudentParameters, async (req, res, next) => {
 	}
 });
 
-//Getting one student
+/**
+ * @swagger
+ * /api/v1/students/:id:
+ *  get:
+ *    summary: This api is used to get a single student's data from the mongoDB database
+ *    description: Get one students
+ *    responses:
+ *      200:
+ *        description: Success
+ */
 router.get('/:id', validateObjectId, async (req, res, next) => {
 	try {
 		const student = await getStudentById();
@@ -59,7 +67,16 @@ router.get('/:id', validateObjectId, async (req, res, next) => {
 	}
 });
 
-//Creating student
+/**
+ * @swagger
+ * /api/v1/students:
+ *  post:
+ *    summary: This api is used to creat a student's record and stores it in the mongoDB database
+ *    description: Create a new student
+ *    responses:
+ *      201:
+ *        description: Student successfully created
+ */
 router.post('/', validateCreateStudent, async (req, res, next) => {
 	try {
 		const student = await createStudent(req.body);
@@ -69,7 +86,16 @@ router.post('/', validateCreateStudent, async (req, res, next) => {
 	}
 });
 
-//Updating student
+/**
+ * @swagger
+ * /api/v1/students/:id:
+ *  patch:
+ *    summary: This api is used to edit/update a student's data in the mongoDB database
+ *    description: Update a student's record
+ *    responses:
+ *      200:
+ *        description: Student's document successfully updated
+ */
 router.patch(
 	'/:id',
 	validateObjectId,
@@ -84,7 +110,16 @@ router.patch(
 	}
 );
 
-//Deleting student
+/**
+ * @swagger
+ * /api/v1/students/:id:
+ *  delete:
+ *    summary: This api is used to delete student's record from mongoDB database.
+ *    description: This api is used to fetch a single student data and delete it.
+ *    responses:
+ *      200:
+ *        description: Student successfully deleted
+ */
 router.delete('/:id', validateObjectId, async (req, res, next) => {
 	try {
 		await deleteStudent(req.params.id);

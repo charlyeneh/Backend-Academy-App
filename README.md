@@ -13,7 +13,11 @@
 
 This is a simple REST service for the management of students at Backend Academy school. It was built with NodeJS, ExpressJS, mongoose and mongoDB. User can CRUD student's data(Bio data and subjects detail) as well as query simple statistical data relating to students in the school..
 
-![API Documentation](./docs/api-doc.png)
+![API Documentation](./utils/image.png)
+
+_The API documentation above can be accessed by visiting http://{host}:{PORT}/{API_PREFIX}/docs_
+
+Example: http://localhost:5000/api/v1/api-docs/#/
 
 ## Table of Contents
 
