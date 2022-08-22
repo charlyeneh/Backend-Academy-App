@@ -8,7 +8,7 @@ const studentsRouter = require('./routes/students');
 
 const classesRouter = require('./routes/subjects');
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
