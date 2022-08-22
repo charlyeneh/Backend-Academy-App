@@ -15,8 +15,6 @@ This is a simple REST service for the management of students at Backend Academy 
 
 ![API Documentation](./docs/api-doc.png)
 
-_The API documentation above can be accessed by visiting http://{host}:{PORT}/{API_PREFIX}/docs_
-
 ## Table of Contents
 
 3. <a href="#tech-stack-used">Tech Stack Used</a>
