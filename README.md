@@ -4,7 +4,7 @@
   <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/app_development#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/project_setup/commit-activity" target="_blank">
+  <a href="https://github.com/charlyeneh/Backend-Academy-api/tree/app_development/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
 </p>
