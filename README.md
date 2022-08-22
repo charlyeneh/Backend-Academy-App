@@ -53,7 +53,7 @@ A user can
 
 ## How to Use
 
-> Install [MongoDB](https://www.mongodb.com/what-is-mongodb) and [Redis](https://redis.io/download)
+> Install [MongoDB](https://www.mongodb.com/what-is-mongodb)
 
 > Clone the repository to your local machine
 
@@ -80,6 +80,12 @@ $ cp env.sample.env
 
 ```sh
 $ npm install
+```
+
+> Run the seed.js file to generate mock data of the student's records
+
+```sh
+$ node seed.js
 ```
 
 > Start the server. _Make sure your mongoDB deamon and redis client are running_
