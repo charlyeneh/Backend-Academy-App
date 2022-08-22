@@ -43,6 +43,7 @@ A user can
 - delete a student
 - view all students in a class
 - view all students in a class that offer a particular subject
+- view all (male/female)students in a class that offer a particular subject
 - view all subjects
 - add a subject for a student
 - update a subject for a student
