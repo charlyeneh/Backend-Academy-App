@@ -19,6 +19,8 @@ _The API documentation above can be accessed by visiting http://{host}:{PORT}/{A
 
 Example: http://localhost:5000/api/v1/api-docs/#/
 
+- [Live Demo Documentation](https://polar-garden-38142.herokuapp.com/api/v1/api-docs/)
+
 ## Table of Contents
 
 1. <a href="#tech-stack-used">Tech Stack Used</a>

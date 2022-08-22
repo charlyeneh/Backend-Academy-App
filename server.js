@@ -43,6 +43,9 @@ app.use(express.json());
 app.use(`${version1}/students`, studentsRouter);
 app.use(`${version1}/subjects`, subjectsRouter);
 
+//Redirect to doc url
+app.use('*', (req, res) => res.redirect(req.baseUrl + `${version1}/api-docs`));
+
 app.use(errorMiddleware);
 
 app.listen(port, () => {
