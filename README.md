@@ -17,20 +17,22 @@ This is a simple REST service for the management of students at Backend Academy 
 
 ## Table of Contents
 
-3. <a href="#tech-stack-used">Tech Stack Used</a>
-4. <a href="#application-features">Application Features</a>
-5. <a href="#how-to-use">How To Use</a>
-6. <a href="#author">Author</a>
-7. <a href="#contributing">Contributing</a>
-8. <a href="#license">License</a>
+1. <a href="#tech-stack-used">Tech Stack Used</a>
+2. <a href="#application-features">Application Features</a>
+3. <a href="#how-to-use">How To Use</a>
+4. <a href="#author">Author</a>
+5. <a href="#license">License</a>
 
 ## Tech Stack Used
 
 - [Node.js](https://nodejs.org/)
 - [Express](https://expressjs.com/)
+- [Mongoose](https://mongoosejs.com/docs/)
 - [MongoDB](https://www.mongodb.com/what-is-mongodb)
 - [Eslint](https://eslint.org/)
 - [Swagger](https://swagger.io/)
+- [Faker-js/faker](https://www.npmjs.com/package/@faker-js/faker)
+- [Joi](https://www.npmjs.com/package/joi)
 
 ## Application Features
 
